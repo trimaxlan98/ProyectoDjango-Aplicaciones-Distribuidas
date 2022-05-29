@@ -1,6 +1,6 @@
 body {
   font-family: 'Lora';
-  background: linear-gradient(rgba(47, 23, 15, 0.65), rgba(47, 23, 15, 0.65)), url("../img/upiita.jpg");
+  background: linear-gradient(rgba(47, 23, 15, 0.65), rgba(47, 23, 15, 0.65)), url("../img/oax.jpg");
   background-attachment: fixed;
   background-position: center;
   background-size: cover;
@@ -20,7 +20,7 @@ p {
 }
 
 .text-faded {
-  color: gold;
+  color: #22050a;
 }
 
 .site-heading {
@@ -80,7 +80,7 @@ p {
 }
 
 #mainNav {
-  background-color: gold;
+  background-color:#09908f;
   font-family: 'Raleway';
 }
 
@@ -134,7 +134,7 @@ p {
     left: 600;
     width: 60%;
     margin-top: 3rem;
-    background-color:royalblue;
+    background-color:rgb(253, 177, 0);
     color: cornsilk;
     position: absolute;
   }
@@ -162,7 +162,7 @@ p {
   position: relative;
   padding: 3rem;
   margin: 0.5rem;
-  background-color: gold;
+  background-color: #09908f;
   color: cornsilk;
 }
 
@@ -229,7 +229,7 @@ p {
 }
 
 .footer {
-   background-color: rgba(24, 64, 8, 0.8);
+   background-color: #09908f;
 }
 
 
@@ -276,4 +276,21 @@ ul.errorlist{
   padding-top: .75rem;
   font-style: italic;
   color: red;
+}
+
+.linksCategorias{
+  color:white !important;
+  text-decoration: underline;
+}
+
+.linksCategorias:hover{
+  text-decoration: none;
+}
+
+.contenedorFormulario{
+  background-color: #09908f;
+  width: 50%;
+  margin: 10px auto;
+  border-radius: 5px;
+  padding: 1px 0px;
 }
