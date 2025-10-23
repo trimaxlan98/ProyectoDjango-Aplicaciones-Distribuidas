@@ -41,7 +41,12 @@ INSTALLED_APPS = [
     'servicios',
     'blog',
     'tienda',
-    'contacto',
+    'crispy_forms',
+    'carro',
+    'pedidos',
+    'autenticacion',
+    'dashboard',
+
 ]
 
 MIDDLEWARE = [
@@ -67,10 +72,15 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'carro.context_processor.importe_total_carro',
             ],
         },
     },
 ]
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+CRISPY_TEMPLATE_PACK='bootstrap4'
 
 WSGI_APPLICATION = 'ProyectoWeb.wsgi.application'
 

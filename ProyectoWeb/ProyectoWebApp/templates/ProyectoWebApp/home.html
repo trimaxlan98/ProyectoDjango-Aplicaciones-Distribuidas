@@ -1,42 +1,49 @@
 {% extends "ProyectoWebApp/base.html" %}
-
 {% load static %}
 
 {% block content %}
-   <!-- Heading -->
-   <section class="page-section clearfix">
-    <div class="container">
-      <div class="intro">
-        <img class="intro-img img-fluid mb-3 mb-lg-0 rounded" src="{% static 'ProyectoWebApp/img/ethernet.jpg' %}" alt="">
-        <div class="intro-text left-0 text-center bg-faded p-5 rounded">
-          <h2 class="section-heading mb-4" >
-            <span class="section-heading-upper">Puntualidad</span>
-            <span class="section-heading-lower">Los mejores productos!</span>
-          </h2>
-          <p class="mb-3">En la puertra de tu casa en menos de 48 h con el envío normal. En menos de 24 h con el envío express.
-          </p>
-         
+<!-- Header-->
+<header class="bg-dark py-5">
+    <div class="container px-4 px-lg-5 my-5">
+        <div class="text-center text-white">
+            <h1 class="display-4 fw-bolder">Compass Tienda</h1>
+            <p class="lead fw-normal text-white-50 mb-0">Calidad y estilo en un solo lugar</p>
+            <a href="{% url 'Tienda' %}" class="btn btn-primary btn-lg mt-4">Ver todos los productos</a>
         </div>
-      </div>
     </div>
-  </section>
+</header>
 
-
-  
-    <!-- Message -->
-    <section class="page-section cta">
-      <div class="container">
-        <div class="row">
-          <div class="col-xl-9 mx-auto">
-            <div class="cta-inner text-center rounded">
-              <h2 class="section-heading mb-4">
-                <span class="section-heading-upper">Compromiso total</span>
-                <span class="section-heading-lower">Garantizado</span>
-              </h2>
-              <p class="mb-0">Con más de 75 años de experiencia a nuestras espaldas, desde Gestión de Pedidos tenemos los conocimientos y herramientas necesarios para llevar cualquier objeto a la puerta de su casa con puntualidad y profesionalidad.</p>
+<!-- Section-->
+<section class="py-5">
+    <div class="container px-4 px-lg-5 mt-5">
+        <h2 class="text-center mb-5">Productos Destacados</h2>
+        <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
+            
+            {% for producto in productos_destacados %}
+            <div class="col mb-5">
+                <div class="card h-100">
+                    <!-- Product image-->
+                    <a href="{% url 'detalle_producto' producto.id %}" class="text-dark text-decoration-none">
+                        <img class="card-img-top" src="{{ producto.imagen.url }}" alt="{{ producto.nombre }}" />
+                        <!-- Product details-->
+                        <div class="card-body p-4">
+                            <div class="text-center">
+                                <!-- Product name-->
+                                <h5 class="fw-bolder">{{ producto.nombre }}</h5>
+                                <!-- Product price-->
+                                ${{ producto.precio|floatformat:2 }}
+                            </div>
+                        </div>
+                    </a>
+                    <!-- Product actions-->
+                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                        <div class="text-center"><a class="btn btn-outline-dark mt-auto" href="{% url 'carro:agregar' producto.id %}">Añadir al carro</a></div>
+                    </div>
+                </div>
             </div>
-          </div>
+            {% endfor %}
+
         </div>
-      </div>
-    </section>
+    </div>
+</section>
 {% endblock %}

@@ -1,32 +1,22 @@
 {% extends "ProyectoWebApp/base.html" %}
-
 {% load static %}
-
 {% block content %}
 
 <div class="container">
-
     <div class="row">
-
         <!-- Categorías a la izquierda -->
         <div class="col-md-3">
             <div class="list-group">
-                <a href="{% url 'Tienda' %}" class="list-group-item list-group-item-action active">Todas</a>
                 {% for cat in categorias %}
-                    <a href="{% url 'categoria' cat.id %}" class="list-group-item list-group-item-action">{{cat.nombre}}</a>
+                    <a href="{% url 'categoria' cat.id %}" class="list-group-item list-group-item-action {% if categoria.id == cat.id %}active{% endif %}">
+                        {{cat.nombre}}
+                    </a>
                 {% endfor %}
             </div>
         </div>
 
         <!-- Productos a la derecha -->
         <div class="col-md-9">
-            <h3 class="my-3">
-                {% if query %}
-                    Resultados para "{{ query }}"
-                {% else %}
-                    Todos los productos
-                {% endif %}
-            </h3>
             <div class="row">
                 {% for producto in page_obj %}
                     <div class="col-md-4 mb-4">
@@ -59,9 +49,7 @@
                 {% include 'tienda/paginacion.html' %}
             </div>
         </div>
-
     </div>
-
 </div>
 
 {% endblock %}

@@ -1,0 +1,32 @@
+{% extends "ProyectoWebApp/base.html" %}
+
+{% block content %}
+<div class="container my-5">
+    <a href="{% url 'dashboard_home' %}" class="btn btn-secondary mb-3">&larr; Volver al Panel</a>
+    <div class="card">
+        <div class="card-header">
+            <h3>Detalle del Pedido #{{ pedido.id }}</h3>
+        </div>
+        <div class="card-body">
+            <p><strong>Cliente:</strong> {{ pedido.user.username }} ({{ pedido.user.email }})</p>
+            <p><strong>Fecha:</strong> {{ pedido.created_at|date:"d/m/Y H:i" }}</p>
+            <hr>
+            <h4>Artículos del Pedido</h4>
+            <ul class="list-group">
+                {% for linea in pedido.lineapedido_set.all %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        <div>
+                            <strong>{{ linea.producto.nombre }}</strong>
+                            <small class="text-muted"> (ID: {{ linea.producto.id }})</small>
+                        </div>
+                        <span>{{ linea.cantidad }} x ${{ linea.producto.precio|floatformat:2 }}</span>
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+        <div class="card-footer text-right">
+            <h4>Total del Pedido: ${{ pedido.total|floatformat:2 }}</h4>
+        </div>
+    </div>
+</div>
+{% endblock %}

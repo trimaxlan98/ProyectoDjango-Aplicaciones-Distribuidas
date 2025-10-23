@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Pedido</title>
+</head>
+<body style="font-family: Arial, sans-serif; margin: 0; padding: 0; background-color: #f4f4f4;">
+    <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f4f4f4;">
+        <tr>
+            <td align="center">
+                <table width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; margin: 20px 0; border-radius: 8px; box-shadow: 0 2px 4px rgba(0,0,0,0.1);">
+                    <!-- Header -->
+                    <tr>
+                        <td align="center" style="padding: 20px; border-bottom: 1px solid #dddddd;">
+                            <h1 style="margin: 0; color: #333333;">Compass Tienda</h1>
+                        </td>
+                    </tr>
+                    <!-- Body -->
+                    <tr>
+                        <td style="padding: 30px;">
+                            <h2 style="color: #333333;">¡Gracias por tu compra, {{ nombreusuario }}!</h2>
+                            <p style="color: #555555; line-height: 1.5;">Hemos recibido tu pedido y ya lo estamos preparando. A continuación, te dejamos los detalles de tu compra.</p>
+                            <hr style="border: 0; border-top: 1px solid #dddddd;">
+                            <p style="color: #555555;">
+                                <strong>Número de Pedido:</strong> {{ pedido.id }}<br>
+                                <strong>Fecha del Pedido:</strong> {{ pedido.created_at|date:"d/m/Y" }}
+                            </p>
+                            <h3 style="color: #333333; border-bottom: 2px solid #f4f4f4; padding-bottom: 10px;">Resumen del Pedido</h3>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                {% for linea in lineas_pedido %}
+                                    <tr style="border-bottom: 1px solid #f4f4f4;">
+                                        <td style="padding: 15px 0;">
+                                            <strong style="color: #333333;">{{ linea.producto.nombre }}</strong>
+                                            <br>
+                                            <small style="color: #777777;">Cantidad: {{ linea.cantidad }}</small>
+                                        </td>
+                                        <td align="right" style="padding: 15px 0; color: #333333;">${{ linea.producto.precio|floatformat:2 }}</td>
+                                    </tr>
+                                {% endfor %}
+                            </table>
+                            <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-top: 20px;">
+                                <tr>
+                                    <td align="right">
+                                        <h3 style="margin: 0; color: #333333;">Total: ${{ pedido.total|floatformat:2 }}</h3>
+                                    </td>
+                                </tr>
+                            </table>
+                        </td>
+                    </tr>
+                    <!-- Footer -->
+                    <tr>
+                        <td align="center" style="padding: 20px; background-color: #f9f9f9; border-top: 1px solid #dddddd;">
+                            <p style="margin: 0; color: #777777; font-size: 12px;">&copy; 2024 Compass Tienda. Todos los derechos reservados.</p>
+                        </td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+</body>
+</html>
